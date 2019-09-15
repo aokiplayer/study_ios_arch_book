@@ -31,6 +31,9 @@ final class MessageSender {
     private let api = CommonMessageAPI()
     let messageType: MessageType
     var delegate: MessageSenderDelegate?
+    var isValid: Bool {
+        MessageInput(messageType: messageType, image: image, text: text).isValid
+    }
 
     // MessageType.official をセットアップするのは禁止！！
     init(messageType: MessageType) {
@@ -38,34 +41,14 @@ final class MessageSender {
     }
     // 送信するメッセージの入力値
     var text: String? { // TextMessage, ImageMessage どちらの場合も使う
-        didSet { if !isTextValid { delegate?.validではないことを伝える() } }
+        didSet { if !isValid { delegate?.validではないことを伝える() } }
     }
     var image: UIImage? {// ImageMessage の場合に使う
-        didSet { if !isImageValid { delegate?.validではないことを伝える() } }
+        didSet { if !isValid { delegate?.validではないことを伝える() } }
     }
     // 通信結果
     private(set) var isLoading: Bool = false
     private(set) var result: Message? // 送信成功したら値が入る
-
-    // MARK: - Validation
-
-    private var isTextValid: Bool {
-        switch messageType {
-        case .text: return text != nil && text!.count <= 300 // 300 文字以内
-        case .image: return text == nil || text!.count <= 80 // 80 文字以内 or nil
-        case .official: return false // OfficialMessage はありえない
-        }
-    }
-    private var isImageValid: Bool {
-        return image != nil // image の場合だけ考慮する
-    }
-    private var isValid: Bool {
-        switch messageType {
-        case .text: return isTextValid
-        case .image: return isTextValid && isImageValid
-        case .official: return false // OfficialMessage はありえない
-        }
-    }
 
     // MARK: - Sending
 
