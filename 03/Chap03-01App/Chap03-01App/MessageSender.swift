@@ -47,6 +47,8 @@ final class MessageSender {
     private(set) var isLoading: Bool = false
     private(set) var result: Message? // 送信成功したら値が入る
 
+    // MARK: - Validation
+
     private var isTextValid: Bool {
         switch messageType {
         case .text: return text != nil && text!.count <= 300 // 300 文字以内
@@ -64,6 +66,9 @@ final class MessageSender {
         case .official: return false // OfficialMessage はありえない
         }
     }
+
+    // MARK: - Sending
+
     func send() {
         guard isValid else { delegate?.validではないことを伝える(); return }
         isLoading = true

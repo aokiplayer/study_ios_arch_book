@@ -104,11 +104,11 @@
 				CD81B478232E5FEE0067E2BA /* AppDelegate.swift */,
 				CD81B47A232E5FEE0067E2BA /* SceneDelegate.swift */,
 				CD81B47C232E5FEE0067E2BA /* ContentView.swift */,
+				CD81B4A8232E604F0067E2BA /* MessageSender.swift */,
 				CD81B47E232E5FF00067E2BA /* Assets.xcassets */,
 				CD81B483232E5FF00067E2BA /* LaunchScreen.storyboard */,
 				CD81B486232E5FF00067E2BA /* Info.plist */,
 				CD81B480232E5FF00067E2BA /* Preview Content */,
-				CD81B4A8232E604F0067E2BA /* MessageSender.swift */,
 			);
 			path = "Chap03-01App";
 			sourceTree = "<group>";
