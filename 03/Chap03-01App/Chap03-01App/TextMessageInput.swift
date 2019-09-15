@@ -8,14 +8,19 @@
 
 import UIKit
 
+enum TextMessageInputError: Error {
+    case tooLongText(count: Int)
+}
+
 struct TextMessageInput {
     var text: String?
 
     // MARK: - Validation
 
-    var isValid: Bool {
-        if text == nil { return false }
-        if let text = text, text.count > 300 { return false }
-        return true
+    func validate() throws -> String? {
+        if let text = text, text.count > 300 {
+            throw TextMessageInputError.tooLongText(count: text.count)
+        }
+        return text
     }
 }

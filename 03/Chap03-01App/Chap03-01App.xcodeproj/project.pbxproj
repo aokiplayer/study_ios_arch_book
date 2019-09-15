@@ -18,7 +18,7 @@
 		CD81B4A9232E604F0067E2BA /* MessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81B4A8232E604F0067E2BA /* MessageSender.swift */; };
 		CD81B4AB232E6A1D0067E2BA /* TextMessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81B4AA232E6A1D0067E2BA /* TextMessageInput.swift */; };
 		CD81B4AD232E6C9E0067E2BA /* ImageMessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81B4AC232E6C9E0067E2BA /* ImageMessageInput.swift */; };
-		CD81B4AF232E6F290067E2BA /* MessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81B4AE232E6F290067E2BA /* MessageInput.swift */; };
+		CDABAF06232E84A0007D54D2 /* MessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDABAF05232E84A0007D54D2 /* MessageInput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,7 @@
 		CD81B4A8232E604F0067E2BA /* MessageSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSender.swift; sourceTree = "<group>"; };
 		CD81B4AA232E6A1D0067E2BA /* TextMessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageInput.swift; sourceTree = "<group>"; };
 		CD81B4AC232E6C9E0067E2BA /* ImageMessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageInput.swift; sourceTree = "<group>"; };
-		CD81B4AE232E6F290067E2BA /* MessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInput.swift; sourceTree = "<group>"; };
+		CDABAF05232E84A0007D54D2 /* MessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +111,7 @@
 				CD81B47A232E5FEE0067E2BA /* SceneDelegate.swift */,
 				CD81B47C232E5FEE0067E2BA /* ContentView.swift */,
 				CD81B4A8232E604F0067E2BA /* MessageSender.swift */,
-				CD81B4AE232E6F290067E2BA /* MessageInput.swift */,
+				CDABAF05232E84A0007D54D2 /* MessageInput.swift */,
 				CD81B4AA232E6A1D0067E2BA /* TextMessageInput.swift */,
 				CD81B4AC232E6C9E0067E2BA /* ImageMessageInput.swift */,
 				CD81B47E232E5FF00067E2BA /* Assets.xcassets */,
@@ -282,10 +282,10 @@
 				CD81B4A9232E604F0067E2BA /* MessageSender.swift in Sources */,
 				CD81B4AB232E6A1D0067E2BA /* TextMessageInput.swift in Sources */,
 				CD81B4AD232E6C9E0067E2BA /* ImageMessageInput.swift in Sources */,
+				CDABAF06232E84A0007D54D2 /* MessageInput.swift in Sources */,
 				CD81B479232E5FEE0067E2BA /* AppDelegate.swift in Sources */,
 				CD81B47B232E5FEE0067E2BA /* SceneDelegate.swift in Sources */,
 				CD81B47D232E5FEE0067E2BA /* ContentView.swift in Sources */,
-				CD81B4AF232E6F290067E2BA /* MessageInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

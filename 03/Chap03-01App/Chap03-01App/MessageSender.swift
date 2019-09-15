@@ -31,8 +31,9 @@ final class MessageSender {
     private let api = CommonMessageAPI()
     let messageType: MessageType
     var delegate: MessageSenderDelegate?
-    var isValid: Bool {
-        MessageInput(messageType: messageType, image: image, text: text).isValid
+
+    func validate() -> (success: Bool, image: UIImage?, text: String?) {
+        MessageInput(messageType: messageType, image: image, text: text).validate()
     }
 
     // MessageType.official をセットアップするのは禁止！！
@@ -41,10 +42,31 @@ final class MessageSender {
     }
     // 送信するメッセージの入力値
     var text: String? { // TextMessage, ImageMessage どちらの場合も使う
-        didSet { if !isValid { delegate?.validではないことを伝える() } }
+        didSet {
+            do {
+                let _ = try TextMessageInput(text: text).validate()
+            } catch TextMessageInputError.tooLongText(let count) {
+                print("長すぎ: \(count)")
+                delegate?.validではないことを伝える()
+            } catch {
+                fatalError("Unknown error")
+            }
+        }
     }
     var image: UIImage? {// ImageMessage の場合に使う
-        didSet { if !isValid { delegate?.validではないことを伝える() } }
+        didSet {
+            do {
+                let _ = try ImageMessageInput(image: image, text: text).validate()
+            } catch ImageMessageInputError.noImage {
+                print("画像がない")
+                delegate?.validではないことを伝える()
+            } catch ImageMessageInputError.tooLongText(let count) {
+                print("長すぎ: \(count)")
+                delegate?.validではないことを伝える()
+            } catch {
+                fatalError("Unknown error")
+            }
+        }
     }
     // 通信結果
     private(set) var isLoading: Bool = false
@@ -53,7 +75,7 @@ final class MessageSender {
     // MARK: - Sending
 
     func send() {
-        guard isValid else { delegate?.validではないことを伝える(); return }
+        guard validate().success else { delegate?.validではないことを伝える(); return }
         isLoading = true
         switch messageType {
         case .text:

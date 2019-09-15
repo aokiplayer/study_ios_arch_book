@@ -1,5 +1,5 @@
 //
-//  MessageInputValidator.swift
+//  MessageInput.swift
 //  Chap03-01App
 //
 //  Created by Hiroyuki Aoki on 2019/09/15.
@@ -10,17 +10,35 @@ import UIKit
 
 struct MessageInput {
     let messageType: MessageType
-    let image: UIImage?
-    let text: String?
+    var image: UIImage?
+    var text: String?
 
-    var isValid: Bool {
-        switch messageType {
-        case .text:
-            return TextMessageInput(text: text).isValid
-        case .image:
-            return ImageMessageInput(image: image, text: text).isValid
-        case .official:
-            return false
+    // MARK: - Validation
+
+    func validate() -> (success: Bool, image: UIImage?, text: String?) {
+        var result: Bool = false
+
+        do {
+            switch messageType {
+            case .text:
+                let _ = try TextMessageInput(text: text).validate()
+                result = true
+            case .image:
+                let _ = try ImageMessageInput(image: image, text: text).validate()
+                result = true
+            case .official:
+                result = false
+            }
+        } catch TextMessageInputError.tooLongText(let count) {
+            print("長すぎ: \(count)")
+        } catch ImageMessageInputError.tooLongText(let count) {
+            print("長すぎ: \(count)")
+        } catch ImageMessageInputError.noImage {
+            print("画像がない")
+        } catch {
+            print("不明なエラー")
         }
+
+        return (result, image, text)
     }
 }

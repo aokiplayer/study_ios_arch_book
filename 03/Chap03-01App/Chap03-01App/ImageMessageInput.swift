@@ -8,15 +8,21 @@
 
 import UIKit
 
+enum ImageMessageInputError: Error {
+    case noImage, tooLongText(count: Int)
+}
+
 struct ImageMessageInput {
     var image: UIImage?
     var text: String?
 
     // MARK: - Validation
 
-    var isValid: Bool {
-        if image == nil { return false }
-        if let text = text, text.count > 80 { return false }
-        return true
+    func validate() throws -> (image: UIImage, text: String?) {
+        guard let image = image
+            else { throw ImageMessageInputError.noImage }
+        if let text = text, text.count >= 80
+            { throw ImageMessageInputError.tooLongText(count: text.count) }
+        return (image, text)
     }
 }
