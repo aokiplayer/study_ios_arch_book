@@ -19,6 +19,8 @@
 		CD81B4AB232E6A1D0067E2BA /* TextMessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81B4AA232E6A1D0067E2BA /* TextMessageInput.swift */; };
 		CD81B4AD232E6C9E0067E2BA /* ImageMessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81B4AC232E6C9E0067E2BA /* ImageMessageInput.swift */; };
 		CDABAF06232E84A0007D54D2 /* MessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDABAF05232E84A0007D54D2 /* MessageInput.swift */; };
+		CDABAF0A232E8DA9007D54D2 /* CommonMessageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDABAF09232E8DA9007D54D2 /* CommonMessageAPI.swift */; };
+		CDABAF10232E903F007D54D2 /* CommonMessageAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDABAF0F232E903F007D54D2 /* CommonMessageAPITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		CD81B4AA232E6A1D0067E2BA /* TextMessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageInput.swift; sourceTree = "<group>"; };
 		CD81B4AC232E6C9E0067E2BA /* ImageMessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageInput.swift; sourceTree = "<group>"; };
 		CDABAF05232E84A0007D54D2 /* MessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInput.swift; sourceTree = "<group>"; };
+		CDABAF09232E8DA9007D54D2 /* CommonMessageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMessageAPI.swift; sourceTree = "<group>"; };
+		CDABAF0F232E903F007D54D2 /* CommonMessageAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMessageAPITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +114,7 @@
 				CD81B478232E5FEE0067E2BA /* AppDelegate.swift */,
 				CD81B47A232E5FEE0067E2BA /* SceneDelegate.swift */,
 				CD81B47C232E5FEE0067E2BA /* ContentView.swift */,
-				CD81B4A8232E604F0067E2BA /* MessageSender.swift */,
-				CDABAF05232E84A0007D54D2 /* MessageInput.swift */,
-				CD81B4AA232E6A1D0067E2BA /* TextMessageInput.swift */,
-				CD81B4AC232E6C9E0067E2BA /* ImageMessageInput.swift */,
+				CDABAF0C232E8E8A007D54D2 /* 03 */,
 				CD81B47E232E5FF00067E2BA /* Assets.xcassets */,
 				CD81B483232E5FF00067E2BA /* LaunchScreen.storyboard */,
 				CD81B486232E5FF00067E2BA /* Info.plist */,
@@ -134,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				CD81B48F232E5FF00067E2BA /* Chap03_01AppTests.swift */,
+				CDABAF0F232E903F007D54D2 /* CommonMessageAPITests.swift */,
 				CD81B491232E5FF00067E2BA /* Info.plist */,
 			);
 			path = "Chap03-01AppTests";
@@ -146,6 +148,18 @@
 				CD81B49C232E5FF00067E2BA /* Info.plist */,
 			);
 			path = "Chap03-01AppUITests";
+			sourceTree = "<group>";
+		};
+		CDABAF0C232E8E8A007D54D2 /* 03 */ = {
+			isa = PBXGroup;
+			children = (
+				CD81B4A8232E604F0067E2BA /* MessageSender.swift */,
+				CDABAF09232E8DA9007D54D2 /* CommonMessageAPI.swift */,
+				CDABAF05232E84A0007D54D2 /* MessageInput.swift */,
+				CD81B4AA232E6A1D0067E2BA /* TextMessageInput.swift */,
+				CD81B4AC232E6C9E0067E2BA /* ImageMessageInput.swift */,
+			);
+			path = 03;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +300,7 @@
 				CD81B479232E5FEE0067E2BA /* AppDelegate.swift in Sources */,
 				CD81B47B232E5FEE0067E2BA /* SceneDelegate.swift in Sources */,
 				CD81B47D232E5FEE0067E2BA /* ContentView.swift in Sources */,
+				CDABAF0A232E8DA9007D54D2 /* CommonMessageAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD81B490232E5FF00067E2BA /* Chap03_01AppTests.swift in Sources */,
+				CDABAF10232E903F007D54D2 /* CommonMessageAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

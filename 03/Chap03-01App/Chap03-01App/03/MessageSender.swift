@@ -8,27 +8,8 @@
 
 import UIKit
 
-final class CommonMessageAPI {
-    func fetchAll(ofUserId: Int,
-                  completion: ([Message]?) -> Void) {
-        // Some code...
-    }
-    func fetch(id: Int,
-               completion: (Message?) -> Void) {
-        // Some code...
-    }
-    func sendTextMessage(text: String,
-                         completion: (TextMessage?) -> Void) {
-        // Some code...
-    }
-    func sendImageMessage(image: UIImage, text: String?,
-                          completion: (ImageMessage?) -> Void) {
-        // Some code...
-    }
-}
-
 final class MessageSender {
-    private let api = CommonMessageAPI()
+    private let api: CommonMessageAPIProtocol
     let messageType: MessageType
     var delegate: MessageSenderDelegate?
 
@@ -37,8 +18,9 @@ final class MessageSender {
     }
 
     // MessageType.official をセットアップするのは禁止！！
-    init(messageType: MessageType) {
+    init(messageType: MessageType, api: CommonMessageAPIProtocol) {
         self.messageType = messageType
+        self.api = api
     }
     // 送信するメッセージの入力値
     var text: String? { // TextMessage, ImageMessage どちらの場合も使う
@@ -94,14 +76,24 @@ final class MessageSender {
     }
 }
 
-class Message {
-    // Members...
+protocol Message {
+    var id: Int { get }
 }
 class TextMessage: Message{
-    // Members...
+    var id: Int
+
+    let text: String
+    init(id: Int, text: String) {
+        self.id = id
+        self.text = text
+    }
 }
-class ImageMessage: Message{
-    // Members...
+class ImageMessage: TextMessage{
+    let image: UIImage
+    init(id: Int, text: String, image: UIImage) {
+        self.image = image
+        super.init(id: id, text: text)
+    }
 }
 
 enum MessageType {
