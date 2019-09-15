@@ -15,6 +15,7 @@
 		CD81B485232E5FF00067E2BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD81B483232E5FF00067E2BA /* LaunchScreen.storyboard */; };
 		CD81B490232E5FF00067E2BA /* Chap03_01AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81B48F232E5FF00067E2BA /* Chap03_01AppTests.swift */; };
 		CD81B49B232E5FF00067E2BA /* Chap03_01AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81B49A232E5FF00067E2BA /* Chap03_01AppUITests.swift */; };
+		CD81B4A9232E604F0067E2BA /* MessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81B4A8232E604F0067E2BA /* MessageSender.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		CD81B496232E5FF00067E2BA /* Chap03-01AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Chap03-01AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD81B49A232E5FF00067E2BA /* Chap03_01AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chap03_01AppUITests.swift; sourceTree = "<group>"; };
 		CD81B49C232E5FF00067E2BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD81B4A8232E604F0067E2BA /* MessageSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSender.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				CD81B483232E5FF00067E2BA /* LaunchScreen.storyboard */,
 				CD81B486232E5FF00067E2BA /* Info.plist */,
 				CD81B480232E5FF00067E2BA /* Preview Content */,
+				CD81B4A8232E604F0067E2BA /* MessageSender.swift */,
 			);
 			path = "Chap03-01App";
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD81B4A9232E604F0067E2BA /* MessageSender.swift in Sources */,
 				CD81B479232E5FEE0067E2BA /* AppDelegate.swift in Sources */,
 				CD81B47B232E5FEE0067E2BA /* SceneDelegate.swift in Sources */,
 				CD81B47D232E5FEE0067E2BA /* ContentView.swift in Sources */,
