@@ -9,8 +9,8 @@
 import UIKit
 
 final class MessageSender {
-    private let api: CommonMessageAPIProtocol
-    let messageType: MessageType
+    private let api: MessageSenderAPIProtocol
+    let messageType: SendableMessageStrategy
     var delegate: MessageSenderDelegate?
 
     func validate() -> (success: Bool, image: UIImage?, text: String?) {
@@ -18,7 +18,7 @@ final class MessageSender {
     }
 
     // MessageType.official をセットアップするのは禁止！！
-    init(messageType: MessageType, api: CommonMessageAPIProtocol) {
+    init(messageType: SendableMessageStrategy, api: MessageSenderAPIProtocol) {
         self.messageType = messageType
         self.api = api
     }
@@ -70,9 +70,14 @@ final class MessageSender {
             api.sendImageMessage(image: image!, text: text) { _ in
                 // Some code...
             }
-        case .official:
-            fatalError()
         }
+    }
+
+    enum State {
+        case inputting(validationError: Error?)
+        case sending
+        case sent(Message)
+        case connectionFailed
     }
 }
 
@@ -94,12 +99,6 @@ class ImageMessage: TextMessage{
         self.image = image
         super.init(id: id, text: text)
     }
-}
-
-enum MessageType {
-    case text
-    case image
-    case official
 }
 
 protocol MessageSenderDelegate {

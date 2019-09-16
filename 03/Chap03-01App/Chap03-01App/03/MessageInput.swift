@@ -9,7 +9,7 @@
 import UIKit
 
 struct MessageInput {
-    let messageType: MessageType
+    let messageType: SendableMessageStrategy
     var image: UIImage?
     var text: String?
 
@@ -26,8 +26,6 @@ struct MessageInput {
             case .image:
                 let _ = try ImageMessageInput(image: image, text: text).validate()
                 result = true
-            case .official:
-                result = false
             }
         } catch TextMessageInputError.tooLongText(let count) {
             print("長すぎ: \(count)")

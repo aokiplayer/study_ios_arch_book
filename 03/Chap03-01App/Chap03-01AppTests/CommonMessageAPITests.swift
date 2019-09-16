@@ -9,7 +9,7 @@
 import XCTest
 @testable import Chap03_01App
 
-struct Stub必ず成功するTextMessageAPI: CommonMessageAPIProtocol {
+struct Stub必ず成功するTextMessageAPI: MessageSenderAPI {
     func fetchAll(ofUserId: Int, completion: @escaping ([Message]?) -> Void) {
         DispatchQueue.main.async {
             completion([TextMessage(id: 1, text: "成功1"),
@@ -37,7 +37,7 @@ struct Stub必ず成功するTextMessageAPI: CommonMessageAPIProtocol {
     }
 }
 
-struct 必ず失敗するTextMessageAPI: CommonMessageAPIProtocol {
+struct 必ず失敗するTextMessageAPI: MessageSenderAPI {
     func fetchAll(ofUserId: Int, completion: @escaping ([Message]?) -> Void) {
         DispatchQueue.main.async {
             completion(nil)

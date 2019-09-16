@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol CommonMessageAPIProtocol {
+protocol MessageSenderAPIProtocol {
     func fetchAll(ofUserId: Int, completion: @escaping ([Message]?) -> Void)
     func fetch(id: Int, completion: @escaping (Message?) -> Void)
     func sendTextMessage(text: String, completion: @escaping (TextMessage?) -> Void)
     func sendImageMessage(image: UIImage, text: String?, completion: @escaping (ImageMessage?) -> Void)
 }
 
-final class CommonMessageAPI: CommonMessageAPIProtocol {
+final class TextMessageSenderAPI: MessageSenderAPIProtocol {
     func fetchAll(ofUserId: Int,
                   completion: @escaping ([Message]?) -> Void) {
         // Some code...
@@ -34,3 +34,21 @@ final class CommonMessageAPI: CommonMessageAPIProtocol {
     }
 }
 
+final class ImageMessageSenderAPI: MessageSenderAPIProtocol {
+    func fetchAll(ofUserId: Int,
+                  completion: @escaping ([Message]?) -> Void) {
+        // Some code...
+    }
+    func fetch(id: Int,
+               completion: @escaping (Message?) -> Void) {
+        // Some code...
+    }
+    func sendTextMessage(text: String,
+                         completion: @escaping (TextMessage?) -> Void) {
+        // Some code...
+    }
+    func sendImageMessage(image: UIImage, text: String?,
+                          completion: @escaping (ImageMessage?) -> Void) {
+        // Some code...
+    }
+}
