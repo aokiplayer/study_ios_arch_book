@@ -8,79 +8,6 @@
 
 import UIKit
 
-final class MessageSender {
-    private let api: MessageSenderAPIProtocol
-    let messageType: SendableMessageStrategy
-    var delegate: MessageSenderDelegate?
-
-    func validate() -> (success: Bool, image: UIImage?, text: String?) {
-        MessageInput(messageType: messageType, image: image, text: text).validate()
-    }
-
-    // MessageType.official をセットアップするのは禁止！！
-    init(messageType: SendableMessageStrategy, api: MessageSenderAPIProtocol) {
-        self.messageType = messageType
-        self.api = api
-    }
-    // 送信するメッセージの入力値
-    var text: String? { // TextMessage, ImageMessage どちらの場合も使う
-        didSet {
-            do {
-                let _ = try TextMessageInput(text: text).validate()
-            } catch TextMessageInputError.tooLongText(let count) {
-                print("長すぎ: \(count)")
-                delegate?.validではないことを伝える()
-            } catch {
-                fatalError("Unknown error")
-            }
-        }
-    }
-    var image: UIImage? {// ImageMessage の場合に使う
-        didSet {
-            do {
-                let _ = try ImageMessageInput(image: image, text: text).validate()
-            } catch ImageMessageInputError.noImage {
-                print("画像がない")
-                delegate?.validではないことを伝える()
-            } catch ImageMessageInputError.tooLongText(let count) {
-                print("長すぎ: \(count)")
-                delegate?.validではないことを伝える()
-            } catch {
-                fatalError("Unknown error")
-            }
-        }
-    }
-    // 通信結果
-    private(set) var isLoading: Bool = false
-    private(set) var result: Message? // 送信成功したら値が入る
-
-    // MARK: - Sending
-
-    func send() {
-        guard validate().success else { delegate?.validではないことを伝える(); return }
-        isLoading = true
-        switch messageType {
-        case .text:
-            api.sendTextMessage(text: text!) { [weak self] in
-                self?.isLoading = false
-                self?.result = $0
-                self?.delegate?.通信完了を伝える()
-            }
-        case .image:
-            api.sendImageMessage(image: image!, text: text) { _ in
-                // Some code...
-            }
-        }
-    }
-
-    enum State {
-        case inputting(validationError: Error?)
-        case sending
-        case sent(Message)
-        case connectionFailed
-    }
-}
-
 protocol Message {
     var id: Int { get }
 }
@@ -102,6 +29,66 @@ class ImageMessage: TextMessage{
 }
 
 protocol MessageSenderDelegate {
-    func validではないことを伝える()
-    func 通信完了を伝える()
+//    func validではないことを伝える()
+//    func 通信完了を伝える()
+    func stateの変化を伝える()
+}
+
+protocol MessageInput {
+    associatedtype Payload
+    func validate() throws -> Payload
+}
+
+protocol MessageSenderAPI {
+    associatedtype Payload
+    associatedtype Response: Message
+    func send(payload: Payload, completion: @escaping (Response?) -> Void)
+}
+
+final class MessageSender<API: MessageSenderAPI, Input: MessageInput>
+where API.Payload == Input.Payload {
+    enum State {
+        case inputting(validationError: Error?)
+        case sending
+        case sent(API.Response)
+        case connectionFailed
+
+        init(evaluating input: Input) {
+            // Some code...
+        }
+
+        mutating func accept(response: API.Response?) {
+            // Some code...
+        }
+    }
+
+    private(set) var state: State {
+        didSet { delegate?.stateの変化を伝える() }
+    }
+
+    let api: API
+
+    var input: Input {
+        didSet { state = State(evaluating: input) }
+    }
+
+    var delegate: MessageSenderDelegate?
+
+    init(api: API, input: Input) {
+        self.api = api
+        self.input = input
+        self.state = State(evaluating: input)
+    }
+
+    func send() {
+        do {
+            let payload = try input.validate()
+            state = .sending
+            api.send(payload: payload) { [weak self] in
+                self?.state.accept(response: $0)
+            }
+        } catch let e {
+            state = .inputting(validationError: e)
+        }
+    }
 }
